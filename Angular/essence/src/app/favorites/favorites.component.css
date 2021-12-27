@@ -1,0 +1,59 @@
+.main{
+    color: rgb(221, 217, 217);
+}
+
+.col-md-4{
+    padding: 20px;
+}
+
+.card{
+    background-color: #22272b;
+    /* background-color: rgb(41, 40, 40) */
+}
+
+.card:hover, audio:hover {transform: scale(1.05); color: white;}
+
+
+
+/* audio::-webkit-media-controls-panel{background-color: #18185c;} */
+
+
+
+.card-image {
+    position: relative;
+    margin-bottom: 10px;
+    height: 300px;
+  }
+  
+  img {
+    position: absolute;
+  }
+
+  audio{
+      margin-top: 10px;
+  }
+    
+  .button {
+    position:absolute;
+    width: 300px;
+    left:0;
+    top: 180px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity .35s ease;
+  }
+  
+  .button{
+    padding: 12px 18px;
+    text-align: center;
+    color: rgb(235, 20, 20);
+    z-index: 1;
+  }
+  
+  .button i{
+    font-size: 3em;
+  }
+  .card-image:hover .button {
+    opacity: 1;
+  }
+  

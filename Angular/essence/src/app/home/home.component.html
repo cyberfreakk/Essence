@@ -1,0 +1,44 @@
+<div class="main">
+    <div class="container">
+        <h1>Search</h1>
+        <div class="form-group">
+            <input type="text" class="form-control" name="searchValue" [(ngModel)]="searchValue" (keyup)="searchMusic()" placeholder="Search Songs, Artists or Albums">
+        </div> 
+    
+        <div class="row" *ngIf="tracks">
+            <div class="col-md-4" *ngFor="let item of this.tracks['tracks']['items']">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-image">
+                            <img src="{{item.album.images['1'].url}}" alt="" />
+                            <div class="button" (click)="addToFavorites(item)"><i class="fas fa-heart"></i></div>
+                          </div>
+                          <span class="card-text">{{item.name}}</span> 
+                          <audio type="audio/mpeg" controls>
+                            <source src="{{item.preview_url}}">
+                        </audio>     
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <h3>New Releases</h3>
+        <div class="row" *ngIf="newReleases">
+            <div class="col-md-4" *ngFor="let item of this.newReleases['albums']['items']">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-image">
+                            <img src="{{item.images['1'].url}}" alt="" />
+                            <div class="button" (click)="addToFavoritesNR(item)"><i class="fas fa-heart"></i></div>
+                          </div>
+                          <span class="card-text">{{item.name}}</span> 
+                          <audio type="audio/mpeg" controls>
+                            <source src="{{item.preview_url}}">
+                        </audio> 
+                    </div>
+                </div>
+            </div>
+        </div>        
+        
+    </div>
+</div>

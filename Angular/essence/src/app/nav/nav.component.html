@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark py-3">
+    <div class="container">
+      <div class="navbar-header">
+      <a class="navbar-brand" href="/home"><i class="fa-brands fa-spotify"></i> Essence</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/home']"><i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn()">
+            <a class="nav-link" aria-current="page" [routerLinkActive]="['active']" [routerLink]="['/favorites']"><i class="fas fa-heart"></i> Favorites</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">  
+
+          <li class="nav-item" *ngIf="!isLoggedIn()">
+            <a class="nav-link" routerLink="" (click)="login()"><i class="fas fa-key"></i> Login</a>
+          </li>
+          
+          <li class="nav-item" *ngIf="!isLoggedIn()">
+            <a class="nav-link" routerLink="" (click)="register()"><i class="far fa-user"></i> Register</a>
+          </li>
+
+          <li class="nav-item" *ngIf="isLoggedIn()">
+            <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/logout']" (click)="logout()"><i class="fas fa-power-off"></i> Logout</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,19 @@
+.navbar{
+    background-color: #22272b
+}
+
+.container{
+    font-size: large;
+}
+
+.navbar-header a{
+    font-size: x-large;
+}
+
+.nav-item a:hover {
+    color: white;
+  }
+  
+.nav-item a.nav-link.active {    
+    color: white;
+}
