@@ -8,7 +8,6 @@
 
 .card{
   background-color: #22272b;
-    /* background-color: #1DB954; */
 }
 
 .card:hover, audio:hover {transform: scale(1.05); color: white;}
@@ -17,7 +16,7 @@
 
 .card-image {
     position: relative;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     height: 300px;
   }
   
@@ -28,28 +27,43 @@
   audio{
       margin-top: 10px;
   }
-    
-  .button {
-    position:absolute;
-    width: 300px;
-    left:0;
-    top: 180px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity .35s ease;
+
+  input[type = "checkbox"]{
+    margin-top: 7px;
+    height: 15px;
+    width: 15px;
+    background-color: white;
+    position:relative;
+    outline: none;
+    transform: rotate(45deg);
+    -webkit-appearance: none;
   }
-  
-  .button {
-    padding: 12px 18px;
-    text-align: center;
-    color: #e31b23;
-    z-index: 1;
+
+  input[type = "checkbox"]:before{
+    position: absolute;
+    content: "";
+    background-color: white;
+    height: 60%;
+    width: 100%;
+    top: -50%;
+    outline: none;
+    border-radius: 75px 75px 0 0;    
   }
-  
-  .button i{
-    font-size: 3em;
+
+  input[type = "checkbox"]:after{
+    position: absolute;
+    content: "";
+    background-color: white;
+    height: 60%;
+    width: 100%;
+    transform: rotate(-90deg);
+    border-radius: 75px 75px 0 0;
+    top: 20%;
+    right: 65%
   }
-  .card-image:hover .button {
-    opacity: 1;
+
+  input[type="checkbox"]:checked,
+  input:checked[type="checkbox"]:before,
+  input:checked[type="checkbox"]:after{
+    background-color: #fe0f42;
   }
-  

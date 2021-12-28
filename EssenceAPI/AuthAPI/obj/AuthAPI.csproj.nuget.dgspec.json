@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj": {}
+    "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj": {
+    "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj",
+        "projectUniqueName": "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj",
         "projectName": "AuthAPI",
-        "projectPath": "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj",
+        "projectPath": "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj",
         "packagesPath": "C:\\Users\\arunesh.gupta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\AuthAPI\\obj\\",
+        "outputPath": "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\AuthAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

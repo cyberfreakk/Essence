@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\EssenceAPI\\EssenceAPI.csproj": {}
+    "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\EssenceAPI\\EssenceAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\EssenceAPI\\EssenceAPI.csproj": {
+    "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\EssenceAPI\\EssenceAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\EssenceAPI\\EssenceAPI.csproj",
+        "projectUniqueName": "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\EssenceAPI\\EssenceAPI.csproj",
         "projectName": "EssenceAPI",
-        "projectPath": "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\EssenceAPI\\EssenceAPI.csproj",
+        "projectPath": "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\EssenceAPI\\EssenceAPI.csproj",
         "packagesPath": "C:\\Users\\arunesh.gupta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\EssenceAPI\\obj\\",
+        "outputPath": "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\EssenceAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

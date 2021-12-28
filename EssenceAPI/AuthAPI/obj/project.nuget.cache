@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "CrxTAMA72OUuqW1n/2XrxD6DfF8Rzd4yoG884ftflGrvxi4H3kZbJPKY7vc5f1vB2/zTTIHynr+beyqZZKjoRw==",
+  "dgSpecHash": "2zrPPZ2B51GjuokV/97YvgJWC7U1k1oAIzhrflBMEQUopzD/RTi9jU7Fp/JHlHWBCQKE7iLS1nkIsdRaoEdykg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\arunesh.gupta\\Desktop\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj",
+  "projectFilePath": "C:\\Users\\arunesh.gupta\\Desktop\\Projects\\Essence\\EssenceAPI\\AuthAPI\\AuthAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\arunesh.gupta\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.21\\microsoft.aspnetcore.authentication.jwtbearer.3.1.21.nupkg.sha512",
     "C:\\Users\\arunesh.gupta\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",

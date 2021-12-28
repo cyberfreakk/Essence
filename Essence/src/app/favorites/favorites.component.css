@@ -8,7 +8,6 @@
 
 .card{
     background-color: #22272b;
-    /* background-color: rgb(41, 40, 40) */
 }
 
 .card:hover, audio:hover {transform: scale(1.05); color: white;}
@@ -25,35 +24,23 @@
     height: 300px;
   }
   
-  img {
-    position: absolute;
-  }
+img {
+  position: absolute;
+}
 
-  audio{
-      margin-top: 10px;
-  }
-    
-  .button {
-    position:absolute;
-    width: 300px;
-    left:0;
-    top: 180px;
-    text-align: center;
-    opacity: 0;
-    transition: opacity .35s ease;
-  }
+audio{
+    margin-top: 10px;
+}
   
-  .button{
-    padding: 12px 18px;
-    text-align: center;
-    color: rgb(235, 20, 20);
-    z-index: 1;
-  }
-  
-  .button i{
-    font-size: 3em;
-  }
-  .card-image:hover .button {
-    opacity: 1;
-  }
+.fa-trash{
+  color: white;
+  font-size: large;
+  cursor: pointer;
+}
+
+.fa-trash:hover{
+  color: #fe0f42;
+  font-size: large;
+  cursor: pointer;
+}
   
