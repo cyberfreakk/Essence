@@ -9,7 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { ServiceInterceptor } from './interceptor/service.interceptor';
-import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from './Guards/auth.guard';
 
 
 @NgModule({
@@ -30,7 +30,8 @@ import { LogoutComponent } from './logout/logout.component';
     provide: HTTP_INTERCEPTORS, 
     useClass: ServiceInterceptor, 
     multi: true
-  }],
+  },
+  AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

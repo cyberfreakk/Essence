@@ -1,0 +1,46 @@
+.main{
+    color: rgb(221, 217, 217);
+}
+
+.col-md-4{
+    padding: 20px;
+}
+
+.card{
+    background-color: #22272b;
+}
+
+.card:hover, audio:hover {transform: scale(1.05); color: white;}
+
+
+
+/* audio::-webkit-media-controls-panel{background-color: #18185c;} */
+
+
+
+.card-image {
+    position: relative;
+    margin-bottom: 10px;
+    height: 300px;
+  }
+  
+img {
+  position: absolute;
+}
+
+audio{
+    margin-top: 10px;
+}
+  
+.fa-trash{
+  color: white;
+  font-size: large;
+  cursor: pointer;
+}
+
+.fa-trash:hover{
+  color: #fe0f42;
+  font-size: large;
+  cursor: pointer;
+}
+  

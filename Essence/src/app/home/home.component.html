@@ -29,7 +29,7 @@
                         <div class="card-image">
                             <img src="{{item.images['1'].url}}" alt="" />
                           </div>
-                          <span class="card-text">{{item.name}}<input type="checkbox" (click) = "toggleNR(item, $event)" [checked]="isChecked(item.id)" style="float: right;"></span> 
+                          <span class="card-text">{{item.name}}<input type="checkbox" (click) = "toggleNewReleases(item, $event)" [checked]="isChecked(item.id)" style="float: right;"></span> 
                           <audio type="audio/mpeg" controls>
                             <source src="{{item.preview_url}}">
                         </audio> 

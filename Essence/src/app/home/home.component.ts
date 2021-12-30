@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Track } from '../models/track';
 import { SongsService } from '../services/songs.service';
 import { TokenService } from '../services/token.service';
@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit{
   favTracks: any;
   newReleases:{};
   redirect_uri = "http://localhost:4200";
-  id:string;
 
   constructor(private songsService: SongsService, private tokenService: TokenService){}
 
@@ -28,51 +27,60 @@ export class HomeComponent implements OnInit{
           resolve(true)
         }, 400);
       }))
-      promise.then(result => this.showNewReleases()).then(result => this.getUserId()).then(result => this.getFavorites())
+      promise.then(result => this.showNewReleases()).then(result => this.getUserId());
     }
     if(sessionStorage.getItem('access_token')){
+      // this.tokenService.getToken();
       this.showNewReleases();
       this.getFavorites();
-      this.getUserId();
     }
   }
 
   searchMusic(){
-    this.songsService.getSongs(this.searchValue).subscribe(res => {this.tracks = res});    
+    this.songsService.getSongs(this.searchValue).subscribe(res => {this.tracks = res},
+      (error) => {
+        if(error.status == 401){
+          this.tokenService.getToken();
+          window.location.reload;
+        }
+      });    
   }
 
   showNewReleases(){
-    this.songsService.getNewReleases().subscribe(res => {this.newReleases = res})
+    this.songsService.getNewReleases().subscribe(res => {this.newReleases = res},
+      (error) => {
+        if(error.status == 401){
+          this.tokenService.getToken();
+          window.location.reload;
+        }
+      })
   }  
   
-  getUserId(){
-    this.songsService.getUserId().subscribe(res => this.user = res);
-  }
-  
-  addToFavoritesSearch(item:any){
-    let id = this.user['id'];
+  addSearchToFavorites(item:any){
+    let id = sessionStorage.getItem('id');
+    console.log(id);
     if(id){
       let track:Track = {userId:id,trackName:item.name,trackId:item.id, imageUrl:item.album.images['1'].url, audioUrl:item.preview_url};
       this.songsService.addToFavorites(track).subscribe(data =>{},
       error => {
-        console.error('Error Message: ',error );   
+        console.error('Error Message: ',error.message );   
       });
     }    
   }
 
-  addToFavoritesNR(item:any){
-    let id = this.user['id'];
+  addNewReleasesToFavorites(item:any){
+    let id = sessionStorage.getItem('id');
     if(id){
       let track:Track = {userId:id,trackName:item.name,trackId:item.id, imageUrl:item.images['1'].url, audioUrl:item.preview_url};
       this.songsService.addToFavorites(track).subscribe(data =>{},
       error => {
-        console.error('Error Message: ',error );   
+        console.error('Error Message: ',error.message );   
       });
     }    
   }
 
   removeTrack(item:any){
-    let id = this.user['id'];
+    let id = sessionStorage.getItem('id');
     if(id){
       let track:Track = {userId:id,trackName:item.name,trackId:item.id, imageUrl:item.album.images['1'].url, audioUrl:item.preview_url};
       this.songsService.removeFromFavorites(track).subscribe(data => {});
@@ -80,27 +88,44 @@ export class HomeComponent implements OnInit{
   }
 
   removeTrackNR(item:any){
-    let id = this.user['id'];
+    let id = sessionStorage.getItem('id');
     if(id){
       let track:Track = {userId:id,trackName:item.name,trackId:item.id, imageUrl:item.images['1'].url, audioUrl:item.preview_url};
       this.songsService.removeFromFavorites(track).subscribe(data => {});
     }    
   }
 
+  getUserId(){
+    this.tokenService.getUserId().subscribe(
+      (user) => {     
+      sessionStorage.setItem('id', user['id'].toString())},
+      (error) => {
+        if(error.status == 401){
+          this.tokenService.getToken();
+          window.location.reload;
+        }
+      })
+    setTimeout(() => this.getFavorites(),300);
+  }
+
   getFavorites(){
-    this.songsService.getFavorites().subscribe(res => {this.favTracks = res});  
+    let id = sessionStorage.getItem('id');
+    if(id){
+      this.songsService.getFavorites(id).subscribe(res => {this.favTracks = res});  
+    }
   }
 
   toggleSearch(item, e){
     if(e.target.checked)
-      this.addToFavoritesSearch(item);
+      this.addSearchToFavorites(item);
     else{
       this.removeTrack(item);
     }
   }
-  toggleNR(item, e){
+
+  toggleNewReleases(item, e){
     if(e.target.checked)
-      this.addToFavoritesNR(item);
+      this.addNewReleasesToFavorites(item);
     else{
       this.removeTrackNR(item);
     }

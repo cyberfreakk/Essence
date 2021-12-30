@@ -1,0 +1,21 @@
+<div class="main">
+    <div class="container">    
+        <h1>{{this.playlistName}}</h1>
+        <div class="row" *ngIf="tracks">
+            <div class="col-md-4" *ngFor="let item of this.tracks">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-image">
+                            <img src="{{item.imageUrl}}" alt="" />                            
+                          </div>
+                          <span class="card-text">{{item.trackName}}<i class="fas fa-trash" aria-hidden="true" style="float: right;"></i></span> 
+                          <audio type="audio/mpeg" controls>
+                            <source src="{{item.audioUrl}}">
+                        </audio>     
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+    </div>
+</div>

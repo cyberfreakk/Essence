@@ -12,6 +12,8 @@ export class TokenService {
   client_secret = "ef829dd4696d4eceb24aa608974b9fa7";
   TOKEN = "https://accounts.spotify.com/api/token";
   AUTHORIZE = "https://accounts.spotify.com/authorize";
+  refresh_token:string;
+  id:string;
   
   constructor(private httpClient:HttpClient, private songsService : SongsService) { }  
 
@@ -38,6 +40,7 @@ export class TokenService {
     sessionStorage.removeItem("client_secret");
     sessionStorage.removeItem("access_token");
     sessionStorage.removeItem("refresh_token");
+    sessionStorage.removeItem("id");
     const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')                                                                                                
     setTimeout(() => spotifyLogoutWindow.close(),1000);
   } 
@@ -66,4 +69,21 @@ export class TokenService {
     window.history.pushState("", "", this.redirect_uri);  
   }
 
+  refreshAccessToken(){
+    this.refresh_token = sessionStorage.getItem("refresh_token");
+    let body = "grant_type=refresh_token";
+    body += "&refresh_token=" + this.refresh_token;
+    body += "&client_id=" + this.client_id;
+    let headers = new HttpHeaders();
+    this.httpClient.post(this.TOKEN, body,{headers:headers}).subscribe((data:any) =>{     
+      sessionStorage.setItem('access_token', data['access_token'].toString());
+      sessionStorage.setItem('refresh_token', data['refresh_token'].toString());
+    });
+  }
+
+  getUserId(){
+    let headers = new HttpHeaders();    
+    let searchUrl:string = "https://api.spotify.com/v1/me";
+    return this.httpClient.get(searchUrl, {headers: headers});
+  }
 }

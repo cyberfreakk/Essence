@@ -20,19 +20,41 @@ namespace EssenceAPI.Controllers
             repo = _repo;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("{userId}")]
+        public IActionResult GetTrack(string userId)
         {
-            return Ok(repo.GetTracks());
+            return Ok(repo.GetTracks(userId));
         }
-        
+
+        [HttpGet("{userId}/{playlistName}")]
+        public IActionResult GetPlaylist(string userId, string playlistName)
+        {
+            return Ok(repo.GetPlaylist(userId, playlistName));
+        }
+
+        [HttpPost]
+        [Route("addPlaylist/{userId}/{playlistName}")]
+        public IActionResult Post(string userId, string playlistName, Track track)
+        {
+            try
+            {
+                repo.AddPlaylists(userId, playlistName, track);
+                return StatusCode(200);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
+        }
+
 
         [HttpDelete("{userId}/{trackId}")]
         public IActionResult Delete(string userId, string trackId)
         {
             try
-            {                
-                return Ok(repo.DeleteTrack(userId, trackId));
+            {
+                repo.DeleteTrack(userId, trackId);
+                return StatusCode(200);
             }
             catch (Exception)
             {
@@ -45,7 +67,8 @@ namespace EssenceAPI.Controllers
         {
             try
             {
-                return Ok(repo.AddTrack(track));
+                repo.AddTrack(track);
+                return StatusCode(200);
             }
             catch (Exception)
             {

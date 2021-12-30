@@ -8,6 +8,7 @@ import { TokenService } from '../services/token.service';
 })
 export class NavComponent implements OnInit {    
   redirect_uri = "http://localhost:4200";
+  playlists = ["favs","TestPlaylist"];
   constructor(private tokenService: TokenService) {}   
 
   ngOnInit(): void {

@@ -10,10 +10,14 @@
     font-size: x-large;
 }
 
-.nav-item a:hover {
+.nav-item > a:hover {
     color: white;
   }
   
-.nav-item a.nav-link.active {    
+.nav-item > a.nav-link.active {    
     color: white;
 }
+
+/* .dropdown-menu {     background-color:#22272b  } */
+
+/* .dropdown-item {   color: white; }   */
