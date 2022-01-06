@@ -12,10 +12,40 @@
                         <div class="card-image">
                             <img src="{{item.album.images['1'].url}}" alt="" />                            
                           </div>
-                          <span class="card-text">{{item.name}}<input type="checkbox" (click) = "toggleSearch(item, $event)" [checked]="isChecked(item.id)" style="float: right;"></span> 
+                          <span class="card-text">{{item.name}}
+                              <input type="checkbox" (click) = "toggleSearch(item, $event)" [checked]="isChecked(item.id)" style="float: right;">
+                            </span> 
+                              <p></p>
+                              <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" style="background-color: #22272b;">          
+                                    Add to Playlist                       
+                                </a>                              
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter">Create new playlist</a>
+                                    <button type= "button" class="dropdown-item" href="#" *ngFor="let x of playlists" (click)="addToPlaylist(x,item)" >{{x}}</button>
+                                </div>
+                              </div>
+                              <p></p>
                           <audio type="audio/mpeg" controls>
                             <source src="{{item.preview_url}}">
-                        </audio>     
+                          </audio>  
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content" style="background-color: #22272b;">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Create New Playlist</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label class="col-form-label">Name</label>
+                                        <input type="text" required class="form-control" [(ngModel)]="playlistName">                                
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                        <button class="btn btn-primary" type="submit" data-dismiss="modal" (click)="addToPlaylist(playlistName,item)">Create & Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
                     </div>
                 </div>
             </div>
@@ -29,14 +59,43 @@
                         <div class="card-image">
                             <img src="{{item.images['1'].url}}" alt="" />
                           </div>
-                          <span class="card-text">{{item.name}}<input type="checkbox" (click) = "toggleNewReleases(item, $event)" [checked]="isChecked(item.id)" style="float: right;"></span> 
+                          <span class="card-text">{{item.name}}                            
+                            <input type="checkbox" (click) = "toggleNewReleases(item, $event)" [checked]="isChecked(item.id)" style="float: right;"></span>
+                            <p></p>
+                            <div class="dropdown">
+                                <a class="btn btn-secondary dropdown-toggle" href="#" id="dropdownMenuLink" data-toggle="dropdown" style="background-color: #22272b;">          
+                                    Add to Playlist                       
+                                </a>                              
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                  <a type="button" class="dropdown-item" data-toggle="modal" data-target="#exampleModalCenter1">Create new playlist</a>
+                                  <button type= "button" class="dropdown-item" href="#" *ngFor="let x of playlists" (click)="addToPlaylistNR(x,item)" >{{x}}</button>
+                                </div>
+                              </div>
+                              <p></p>
                           <audio type="audio/mpeg" controls>
                             <source src="{{item.preview_url}}">
-                        </audio> 
+                          </audio> 
+                        
+                        <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content" style="background-color: #22272b;">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Create New Playlist</h5>                                
+                                    </div>
+                                    <div class="modal-body">
+                                        <label class="col-form-label">Name</label>
+                                        <input type="text" required class="form-control" [(ngModel)]="playlistName">                                
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary" data-dismiss="modal" (click)="addToPlaylistNR(playlistName,item)">Create & Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>        
-        
+        </div>                
     </div>
 </div>

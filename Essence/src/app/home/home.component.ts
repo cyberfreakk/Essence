@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit{
   favTracks: any;
   newReleases:{};
   redirect_uri = "http://localhost:4200";
+  playlists:any;
+  playlistName:string;
 
   constructor(private songsService: SongsService, private tokenService: TokenService){}
 
@@ -27,12 +29,12 @@ export class HomeComponent implements OnInit{
           resolve(true)
         }, 400);
       }))
-      promise.then(result => this.showNewReleases()).then(result => this.getUserId());
+      promise.then(result => this.showNewReleases()).then(result => this.getUserId()).then(result => this.getPlaylistsName());
     }
     if(sessionStorage.getItem('access_token')){
-      // this.tokenService.getToken();
       this.showNewReleases();
       this.getFavorites();
+      this.getPlaylistsName()
     }
   }
 
@@ -40,7 +42,7 @@ export class HomeComponent implements OnInit{
     this.songsService.getSongs(this.searchValue).subscribe(res => {this.tracks = res},
       (error) => {
         if(error.status == 401){
-          this.tokenService.getToken();
+          this.tokenService.refreshAccessToken();
           window.location.reload;
         }
       });    
@@ -50,7 +52,7 @@ export class HomeComponent implements OnInit{
     this.songsService.getNewReleases().subscribe(res => {this.newReleases = res},
       (error) => {
         if(error.status == 401){
-          this.tokenService.getToken();
+          this.tokenService.refreshAccessToken();
           window.location.reload;
         }
       })
@@ -58,7 +60,6 @@ export class HomeComponent implements OnInit{
   
   addSearchToFavorites(item:any){
     let id = sessionStorage.getItem('id');
-    console.log(id);
     if(id){
       let track:Track = {userId:id,trackName:item.name,trackId:item.id, imageUrl:item.album.images['1'].url, audioUrl:item.preview_url};
       this.songsService.addToFavorites(track).subscribe(data =>{},
@@ -101,7 +102,7 @@ export class HomeComponent implements OnInit{
       sessionStorage.setItem('id', user['id'].toString())},
       (error) => {
         if(error.status == 401){
-          this.tokenService.getToken();
+          this.tokenService.refreshAccessToken();
           window.location.reload;
         }
       })
@@ -139,4 +140,40 @@ export class HomeComponent implements OnInit{
     }
     return false;
   }
+
+  addToPlaylist(name:string, item:any){
+    let id = sessionStorage.getItem('id');
+    if(id){
+      let track:Track = {userId:id,trackName:item.name,trackId:item.id, imageUrl:item.album.images['1'].url, audioUrl:item.preview_url};
+      this.songsService.addToPlaylist(id,name,track).subscribe(data =>{},
+        error => {
+          console.error('Error Message: ',error.message );   
+        });
+    }
+    window.location.reload();
+  }
+
+  addToPlaylistNR(name:string, item:any){
+    let id = sessionStorage.getItem('id');
+    if(id){
+      let track:Track = {userId:id,trackName:item.name,trackId:item.id, imageUrl:item.images['1'].url, audioUrl:item.preview_url};
+      this.songsService.addToPlaylist(id,name,track).subscribe(data =>{},
+        error => {
+          console.error('Error Message: ',error.message );   
+        });
+    }
+    window.location.reload();
+  }
+
+  getPlaylistsName(){
+    let id = sessionStorage.getItem('id');
+    if(id){
+      this.songsService.getPlaylistsName(id).subscribe(data =>{this.playlists = data},
+        error => {
+          console.error('Error Message: ',error.message );   
+        });
+    }
+  }
+
+  
 }

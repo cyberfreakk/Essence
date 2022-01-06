@@ -2,6 +2,10 @@
     color: rgb(221, 217, 217);
 }
 
+.button{
+  float: right;
+}
+
 .col-md-4{
     padding: 20px;
 }

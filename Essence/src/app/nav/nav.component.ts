@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SongsService } from '../services/songs.service';
 import { TokenService } from '../services/token.service';
 
 @Component({
@@ -7,11 +8,12 @@ import { TokenService } from '../services/token.service';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {    
-  redirect_uri = "http://localhost:4200";
-  playlists = ["favs","TestPlaylist"];
-  constructor(private tokenService: TokenService) {}   
+  playlists:any;
+
+  constructor(private tokenService: TokenService, private songsService: SongsService) {}   
 
   ngOnInit(): void {
+    this.getPlaylistsName();
   } 
 
   login(){
@@ -29,5 +31,15 @@ export class NavComponent implements OnInit {
   isLoggedIn(){
     if(sessionStorage.getItem("access_token")!=null) return true;
     return false;
+  }
+
+  getPlaylistsName(){
+    let id = sessionStorage.getItem('id');
+    if(id){
+      this.songsService.getPlaylistsName(id).subscribe(data =>{this.playlists = data},
+        error => {
+          console.error('Error Message: ',error.message );   
+        });
+    }
   }
 }

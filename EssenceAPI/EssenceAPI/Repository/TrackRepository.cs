@@ -21,9 +21,10 @@ namespace EssenceAPI.Repository
             db.Tracks.InsertOne(track);
         }
 
-        public void DeleteTrack(string userId, string trackId)
+        public bool DeleteTrack(string userId, string trackId)
         {
             db.Tracks.DeleteOne(x => x.userId == userId && x.trackId == trackId);
+            return true;
         }
 
         public List<Track> GetTracks(string userId)
@@ -32,12 +33,11 @@ namespace EssenceAPI.Repository
         }
 
 
-        public Playlists AddPlaylists(string userId,string playlistName,Track track)
+        public Playlists AddPlaylists(string userId, string playlistName, Track track)
         {
             Playlists playlists = db.Playlists.Find(x => x.userId == userId).FirstOrDefault();
             if (playlists != null)
             {
-
                 if (playlists.playlists == null)
                 {
                     playlists.playlists = new List<Playlist>();
@@ -82,12 +82,40 @@ namespace EssenceAPI.Repository
         public List<Track> GetPlaylist(string userId, string playlistName)
         {
             Playlists playlists = db.Playlists.Find(x => x.userId == userId).FirstOrDefault();
-            return playlists.playlists.Find(x => x.playlistName == playlistName).playlist;            
+            return playlists.playlists.Find(x => x.playlistName == playlistName).playlist;
         }
 
-        public void DeleteTrackPlaylist(string userId, string playlistName, string trackId)
+        public bool DeleteTrackPlaylist(string userId, string playlistName, string trackId)
         {
-
+            Playlists playlists = db.Playlists.Find(x => x.userId == userId).FirstOrDefault();
+            var res = playlists.playlists.Find(x => x.playlistName == playlistName);
+            var val = res.playlist.Find(x => x.trackId == trackId);
+            res.playlist.Remove(val);
+            var filter = Builders<Playlists>.Filter.Where(x => x.userId == userId);
+            db.Playlists.FindOneAndReplace(filter, playlists);
+            return true;
         }
+
+        public List<string> GetPlaylists(string userId)
+        {
+            Playlists playlists = db.Playlists.Find(x => x.userId == userId).FirstOrDefault();
+            List<string> names = new List<string>();
+            foreach (var item in playlists.playlists)
+            {
+                names.Add(item.playlistName);
+            }
+            return names;
+        }
+
+        public bool DeletePlaylist(string userId, string playlistName)
+        {
+            Playlists playlists = db.Playlists.Find(x => x.userId == userId).FirstOrDefault();
+            var res = playlists.playlists.Find(x => x.playlistName == playlistName);
+            playlists.playlists.Remove(res);
+            var filter = Builders<Playlists>.Filter.Where(x => x.userId == userId);
+            db.Playlists.FindOneAndReplace(filter, playlists);
+            return true;
+        }
+
     }
 }

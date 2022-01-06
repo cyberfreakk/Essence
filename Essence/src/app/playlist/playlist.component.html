@@ -1,6 +1,7 @@
 <div class="main">
     <div class="container">    
-        <h1>{{this.playlistName}}</h1>
+        <strong style="font-size: 40px;">{{this.playlistName}}</strong>
+        <span class="button"><button class="btn btn-danger" (click)="deletePlaylist()">Delete Playlist</button></span>
         <div class="row" *ngIf="tracks">
             <div class="col-md-4" *ngFor="let item of this.tracks">
                 <div class="card">
@@ -8,7 +9,7 @@
                         <div class="card-image">
                             <img src="{{item.imageUrl}}" alt="" />                            
                           </div>
-                          <span class="card-text">{{item.trackName}}<i class="fas fa-trash" aria-hidden="true" style="float: right;"></i></span> 
+                          <span class="card-text">{{item.trackName}}<i class="fas fa-trash" aria-hidden="true" style="float: right;" (click)="deleteFromPlaylist(item.trackId)"></i></span> 
                           <audio type="audio/mpeg" controls>
                             <source src="{{item.audioUrl}}">
                         </audio>     

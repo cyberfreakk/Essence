@@ -10,7 +10,8 @@
   background-color: #22272b;
 }
 
-.card:hover, audio:hover {transform: scale(1.05); color: white;}
+
+/* .card:hover, audio:hover {transform: scale(1.05); color: white;} */
 
 /* audio::-webkit-media-controls-panel{background-color: #18185c;} */
 
@@ -37,6 +38,7 @@
     outline: none;
     transform: rotate(45deg);
     -webkit-appearance: none;
+    cursor: pointer;
   }
 
   input[type = "checkbox"]:before{
@@ -66,4 +68,14 @@
   input:checked[type="checkbox"]:before,
   input:checked[type="checkbox"]:after{
     background-color: #fe0f42;
+  }
+
+  input[type="checkbox"]:hover,
+  input[type="checkbox"]:hover:before,
+  input[type="checkbox"]:hover:after{
+    background-color: #fe0f42;
+  }
+
+  select{
+    background-color: black; color: white;
   }

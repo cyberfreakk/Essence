@@ -52,4 +52,32 @@ export class SongsService {
       'Content-Type': 'application/json'
     }})
   }
+
+  addToPlaylist(id:string, name:string, item:any){
+    this.searchUrl = "https://localhost:44392/api/track/addPlaylist/"+id+"/"+name;
+    return this.http.post(this.searchUrl,item, {headers: {
+      'Content-Type': 'application/json'      
+    }})
+  }
+
+  getPlaylistsName(id:string){
+    this.searchUrl = "https://localhost:44392/api/track/getPlaylists/"+id;
+    return this.http.get(this.searchUrl, {headers: {
+      'Content-Type': 'application/json'      
+    }})
+  }
+
+  deleteFromPlaylist(id:string, name:string, trackId){
+    this.searchUrl = "https://localhost:44392/api/track/deleteTrackPlaylist/"+id+"/"+name+"/"+trackId;
+    return this.http.delete(this.searchUrl, {headers: {
+      'Content-Type': 'application/json'
+   }})
+  }
+
+  deletePlaylist(id:string, name:string){
+    this.searchUrl = "https://localhost:44392/api/track/deletePlaylist/"+id+"/"+name;
+    return this.http.delete(this.searchUrl, {headers: {
+      'Content-Type': 'application/json'
+   }})
+  }
 }

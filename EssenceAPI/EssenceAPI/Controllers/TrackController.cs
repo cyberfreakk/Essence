@@ -32,6 +32,13 @@ namespace EssenceAPI.Controllers
             return Ok(repo.GetPlaylist(userId, playlistName));
         }
 
+        [HttpGet]
+        [Route("getPlaylists/{userId}")]
+        public IActionResult GetPlaylists(string userId)
+        {
+            return Ok(repo.GetPlaylists(userId));
+        }
+
         [HttpPost]
         [Route("addPlaylist/{userId}/{playlistName}")]
         public IActionResult Post(string userId, string playlistName, Track track)
@@ -54,6 +61,36 @@ namespace EssenceAPI.Controllers
             try
             {
                 repo.DeleteTrack(userId, trackId);
+                return StatusCode(200);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Something went wrong");
+            }
+        }
+
+        [HttpDelete]
+        [Route("deleteTrackPlaylist/{userId}/{playlistName}/{trackId}")]
+        public IActionResult DeleteTrackPlaylist(string userId, string playlistName, string trackId)
+        {
+            try
+            {
+                repo.DeleteTrackPlaylist(userId, playlistName, trackId);
+                return StatusCode(200);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Something went wrong");
+            }
+        }
+
+        [HttpDelete]
+        [Route("deletePlaylist/{userId}/{playlistName}")]
+        public IActionResult DeletePlaylist(string userId, string playlistName)
+        {
+            try
+            {
+                repo.DeletePlaylist(userId, playlistName);
                 return StatusCode(200);
             }
             catch (Exception)
